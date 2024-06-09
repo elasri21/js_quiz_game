@@ -4,7 +4,7 @@ const suggestions = document.querySelector(".suggestions ol");
 const questionState = document.querySelector(".question-state");
 const valid = document.querySelector(".valid");
 const field = document.querySelector(".field input");
-
+const reloadBtn = document.querySelector(".reload");
 
 const questions = [
   {
@@ -141,6 +141,11 @@ function loadQuestion() {
     questionState.textContent = "";
     scoreContainer.textContent = `Finale Score: ${score}/${index}`;
     valid.setAttribute("disabled", "disabled");
+    field.setAttribute("disabled", "disabled");
+    reloadBtn.style.display = "block";
+    setTimeout(function() {
+        reloadBtn.style.opacity = "1"
+    }, 1000);
   }
 }
 
@@ -187,3 +192,6 @@ function clickAnswer(lists) {
 
 loadQuestion();
 valid.addEventListener("click", submitAnswer);
+reloadBtn.addEventListener("click", function() {
+    window.location.reload();
+});
